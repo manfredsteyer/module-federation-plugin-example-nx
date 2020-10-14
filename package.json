@@ -8,7 +8,7 @@
     "build:shell": "ng build shell --prod",
     "build:mfe1": "ng build mfe1 --prod",
     "serve:dist": "concurrently \"serve dist/shell -l 5000 -s\" \"serve dist/mfe1 -l 3000 -s\" ",
-    "start": "concurrently \"npm run start:shell\" \"npm run start:mfe1\" ",
+    "start": "nx run-many --target=serve --all --parallel",
     "build": "npm run build:shell && npm run build:mfe1",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
