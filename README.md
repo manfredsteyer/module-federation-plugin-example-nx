@@ -8,11 +8,11 @@ This examples loads a microfrontend into a shell:
 
 Have a particular look at the following files:
 
-- ``readme.md``: Shows how to install dependencies and how to start the example
-- ``projects\mfe1\webpack.config.js``: Microfrontend config
-- ``projects\shell\webpack.config.js``: Shell config
-- ``projects\shell\src\app\app.routes.ts``: Lazy route for microfrontend
-- ``projects\shell\src\decl.d.ts``: Typing for mapped Url pointing to microfrontend
+- ``README.md``: Shows how to install dependencies and how to start the example
+- ``apps\mfe1\webpack.config.js``: Microfrontend config
+- ``apps\shell\webpack.config.js``: Shell config
+- ``apps\shell\src\app\app.routes.ts``: Lazy route for microfrontend
+- ``apps\shell\src\decl.d.ts``: Typing for mapped Url pointing to microfrontend
 
 ## Installation and Usage
 
