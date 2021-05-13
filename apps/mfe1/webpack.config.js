@@ -1,8 +1,14 @@
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const mf = require("@angular-architects/module-federation/webpack");
+const path = require("path");
+
+const sharedMappings = new mf.SharedMappings();
+sharedMappings.register(
+  path.join(__dirname, '../../tsconfig.base.json'),
+  [/* mapped paths to share */]);
 
 module.exports = {
   output: {
-    publicPath: "http://localhost:3000/",
     uniqueName: "mfe1"
   },
   optimization: {
@@ -12,15 +18,23 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       
-        // For remotes (please adjust)
+        // For remotes (please adjust) --- Micro Frontends/ Plugins
         name: "mfe1",
-        library: { type: "var", name: "mfe1" },
-        filename: "remoteEntry.js",
+        filename: "remoteEntry.js", // <-- Metadata
         exposes: {
             './Module': './apps/mfe1/src/app/flights/flights.module.ts',
         },        
+        
+        // shared: ['@angular/core', ...] 
+        shared: { 
+          "@angular/core": { singleton: true, strictVersion: true }, 
+          "@angular/common": { singleton: true, strictVersion: true }, 
+          "@angular/router": { singleton: true, strictVersion: true },
 
-        shared: ["@angular/core", "@angular/common", "@angular/router"]
-    })
+          ...sharedMappings.getDescriptors()
+        }
+        
+    }),
+    sharedMappings.getPlugin(),
   ],
 };

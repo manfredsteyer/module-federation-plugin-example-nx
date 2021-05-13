@@ -216,6 +216,46 @@
         }
 
       }
+    },
+    "auth-lib": {
+      "projectType": "library",
+      "root": "libs/auth-lib",
+      "sourceRoot": "libs/auth-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/auth-lib/tsconfig.lib.json",
+            "project": "libs/auth-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/auth-lib/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/auth-lib/src/test.ts",
+            "tsConfig": "libs/auth-lib/tsconfig.spec.json",
+            "karmaConfig": "libs/auth-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/auth-lib/tsconfig.lib.json",
+              "libs/auth-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "mfe1",
